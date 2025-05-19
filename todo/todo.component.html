@@ -1,0 +1,50 @@
+
+<div class="todo-container">
+  <h2>Todo List</h2>
+
+  <div class="add-task">
+    <input
+      type="text"
+      [(ngModel)]="newTaskTitle"
+      placeholder="Add a new task"
+      (keyup.enter)="addTask()"
+    >
+    <button (click)="addTask()">Add</button>
+  </div>
+
+  <div class="tasks-list">
+    <div class="no-tasks" *ngIf="tasks.length === 0">
+      No tasks yet. Add a task to get started!
+    </div>
+
+    <div class="task-item" *ngFor="let task of tasks" [class.completed]="task.completed">
+      <div class="task-content" *ngIf="!task.editing">
+        <div class="task-controls">
+          <input
+            type="checkbox"
+            [checked]="task.completed"
+            (change)="toggleComplete(task)"
+          >
+          <span class="task-title">{{ task.title }}</span>
+        </div>
+
+        <div class="task-actions">
+          <button class="edit-btn" (click)="editTask(task)">Edit</button>
+          <button class="delete-btn" (click)="deleteTask(task.id)">Delete</button>
+        </div>
+      </div>
+
+      <div class="task-edit" *ngIf="task.editing">
+        <input
+          type="text"
+          [(ngModel)]="editTaskTitle"
+          (keyup.enter)="updateTask(task)"
+        >
+        <div class="edit-actions">
+          <button class="save-btn" (click)="updateTask(task)">Save</button>
+          <button class="cancel-btn" (click)="cancelEdit(task)">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+<div class="dashboard-container">
+  <header class="header">
+    <div class="logo">Sibasi Ltd</div>
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span class="menu-icon"></span>
+    </button>
+  </header>
+
+  <div class="content-wrapper">
+    <nav class="sidebar" [class.open]="isMenuOpen">
+      <ul class="nav-links">
+        <li>
+          <a routerLink="/dashboard/todo" routerLinkActive="active" (click)="isMenuOpen = false">Home</a>
+        </li>
+        <li>
+          <a routerLink="/dashboard/cards" routerLinkActive="active" (click)="isMenuOpen = false">Cards</a>
+        </li>
+        <li class="spacer"></li>
+        <li>
+          <a href="javascript:void(0)" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
